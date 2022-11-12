@@ -1,3 +1,21 @@
+# prep for question 6 on data analysis
+
+import os
+import pandas as pd
+
+#os.chdir('/Users/MargheritaP/Documents/GitHub/comp4ds_hw5')
+os.getcwd()
+
+#not working
+df = pd.read_csv(os.path.realpath("sample_diabetes_mellitus_data.csv"))
+
+df.head()
+
+
+# prep for library creation
+
+
+
 # 1)
 # Create a function called "car_at_light"
 # It should take one parameter: "light"
@@ -11,6 +29,19 @@
 # "Undefined instruction for color: <light>" 
 # where <light> is the value of the parameter light.
 #
+
+def car_at_light(light:str): 
+    if light == "red": 
+        print("stop")
+    elif light == "green":
+        print("go")
+    elif light == "yellow":
+        print("wait")
+    else :
+        print("Undefined instruction for color: " + str(light))
+
+#test function:
+car_at_light("surya")
 
 # 2)
 # Create a function named "safe_subtract" that
