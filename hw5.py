@@ -89,6 +89,21 @@ safe_subtract_old(8,complex(7))
 # Name the second function "retrieve_age_lbyl" and follow lbyl
 
 
+## EAFP
+
+dic1= {'name': 'John', 'last_name': 'Doe', 'birth': 1987}
+dic2= {'name': 'Janet', 'last_name': 'Bird', 'gender': 'female'}
+
+def retrieve_age_eafp(dictionary):
+    try:
+        return(2022 - dictionary.get('birth'))
+    except:
+        print("This dictionary does not have a birth date to retrieve age from") # Might this be what the question is asking for??
+
+
+
+retrieve_age_eafp(dic2)
+
 
 # 4)
 # Imagine you have a file named data.csv. 
