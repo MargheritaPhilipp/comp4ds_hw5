@@ -59,7 +59,7 @@ def safe_subtract(n1, n2):
     except TypeError: 
         return None
     except Exception as error:
-        print(error)
+        print(str(error))
 
 #test function
 print(safe_subtract(-9.44,5))
@@ -93,17 +93,54 @@ safe_subtract_old(8,complex(7))
 
 dic1= {'name': 'John', 'last_name': 'Doe', 'birth': 1987}
 dic2= {'name': 'Janet', 'last_name': 'Bird', 'gender': 'female'}
+dic3= {'name': 'Janet', 'last_name': 'Bird', 'birth': '1984'}
 
-def retrieve_age_eafp(dictionary):
+
+def retrieve_age_eafp1(dictionary: dict):
     try:
         return(2022 - dictionary.get('birth'))
     except:
         print("This dictionary does not have a birth date to retrieve age from") # Might this be what the question is asking for??
 
+retrieve_age_eafp1(dic2)
+
+#check out different errors:
+dic1.get('birth')
+dic1['birth']
+dic2.get('birth')
+dic2['birth']
 
 
-retrieve_age_eafp(dic2)
+# possibly better as the calling with square brackets results in key error
+def retrieve_age_eafp2(dictionary: dict):
+    try:
+        return print(2022 - dictionary['birth'])
+    except KeyError:
+        print("There is no key called birth in this dictionary")
+    except Exception as error:
+        print("Something went wrong - maybe check the value(s) under birth in your dictionary")
+        
+retrieve_age_eafp2(dic1)
+retrieve_age_eafp2(dic2)
+retrieve_age_eafp2(dic3)
 
+## LBYL
+
+dic1.keys()
+
+def retrieve_age_lbyl(dictionary: dict):
+    if 'birth' in dictionary.keys():
+        True
+        if isinstance(dictionary['birth'],(float, int)):
+            print(2022 - dictionary['birth'])
+        else:
+            print("The value under birth is not a float or an integer")
+    else:
+        print("There is no key called birth in this dictionary")
+
+retrieve_age_lbyl(dic1)      
+retrieve_age_lbyl(dic2)
+retrieve_age_lbyl(dic3)
 
 # 4)
 # Imagine you have a file named data.csv. 
@@ -210,6 +247,11 @@ productory2
 # ["Simba and Nala are lions.", "I laugh in the face of danger.",
 #  "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 #
+
+
+ ["Simba and Nala are lions.", "I laugh in the face of danger.", "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
+
+
 
 # 7)
 # Create a function called "get_day_month_year" that takes 
