@@ -343,3 +343,16 @@ compute_distance(input_example)
 #
 
 
+def sum_general_int_list(l):
+    total=0
+    for j in range(len(l)):
+        if type(l[j])==list:
+            total += sum_general_int_list(l[j])
+        else:
+            total += l[j]
+    return(total)
+ 
+# test
+list_1=[[2], 3, [[1,2],5]]  
+print(sum_general_int_list(list_1))  
+
