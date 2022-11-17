@@ -248,8 +248,19 @@ productory2
 #  "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 #
 
+from functools import reduce 
 
+
+def simba_count(lst):
+    result= map(lambda x: x.count("Simba") , lst)
+    n_simba = list(result)
+    return(reduce(lambda x,y: x+y, n_simba))
+
+
+# test
 list_strings= ["Simba and Nala are lions.", "I laugh in the face of danger.", "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
+
+simba_count(list_strings)
 
 
 
