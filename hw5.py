@@ -261,6 +261,7 @@ productory2
 # day, month, and year.
 # 
 
+
 # 8) 
 # Create a function called "compute_distance" that takes
 # a list of tuple pairs with latitude and longitude coordinates and 
@@ -268,6 +269,23 @@ productory2
 # example input: [((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8))]
 # HINT: You can use geopy.distance in order to compute the distance
 #
+
+from geopy import distance
+
+def compute_distance(list_tuples):
+    def compute_distance_one(one_tuple):
+        p1=one_tuple[0]
+        p2=one_tuple[1]
+        distance_pair=distance.distance(p1, p2)
+        return(distance_pair.km)
+    
+    result=map(compute_distance_one, list_tuples)
+    return(list(result))
+    
+# test
+input_example=[((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8))]
+
+compute_distance(input_example)
 
 #################################################
 # 9)
@@ -281,4 +299,14 @@ productory2
 # the result should be 13
 #
 
-
+# Python program to demonstrate working
+# of map.
+  
+# Return double of n
+def addition(n):
+    return n + n
+  
+# We double all numbers using map()
+numbers = (1, 2, 3, 4)
+result = map(addition, numbers)
+print(list(result))

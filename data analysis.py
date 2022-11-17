@@ -28,6 +28,8 @@ data.info()
 
 # Leaving a function to split train/test after doing transformations
 
+X_train, X_test, y_train, y_test= train_test_split(X, y, random_state = seed, train_size = .80)
+
 def training(X, y):
     seed=1
     X_train, X_test, y_train, y_test= train_test_split(X, y, random_state = seed, train_size = .80)
@@ -67,7 +69,6 @@ features = ['age','height','weight','aids','cirrhosis', 'hepatic_failure', 'immu
 X = data.loc[:, features]
 y = data.loc[:, ['diabetes_mellitus']]
 
-
 X_train, X_test, y_train, y_test = training(X, y)
 
 #Scale features
@@ -89,7 +90,7 @@ predict_test = clf.predict_proba(X_test)
 ## New column to which dataset??
 
 
-#i. Compute the train and test roc_auc metric using roc_auc_score from sklearn.
+#i. Compute the train and test roc_auc metric using roc_auc_score from sklearn..
 
 roc_auc_score(y_train, clf.predict_proba(X_train)[:, 1])
 
