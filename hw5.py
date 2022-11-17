@@ -249,7 +249,7 @@ productory2
 #
 
 
- ["Simba and Nala are lions.", "I laugh in the face of danger.", "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
+list_strings= ["Simba and Nala are lions.", "I laugh in the face of danger.", "Hakuna matata", "Timon, Pumba and Simba are friends, but Simba could eat the other two."] 
 
 
 
@@ -260,6 +260,49 @@ productory2
 # is an element of the input list and has as value its 
 # day, month, and year.
 # 
+
+# Without map or reduce:
+
+import pandas as pd
+import datetime
+
+
+def get_day_month_year_simple(list_dt):
+    df = pd.DataFrame(example, columns = ['date_full'])
+    # Get day
+    df['day'] = pd.DatetimeIndex(df['date_full']).year
+    # Get month
+    df['month'] = pd.DatetimeIndex(df['date_full']).month
+    # Get year
+    df['year'] = pd.DatetimeIndex(df['date_full']).day
+    
+    df.drop(['date_full'], axis=1, inplace=True) 
+    
+    return(df)
+
+# test
+example = [datetime.datetime.today() - datetime.timedelta(days=x) for x in range(5)]
+
+get_day_month_year_simple(example)    
+    
+# Testing map or reduce
+
+import pandas as pd
+import datetime
+
+
+def get_day_month_year(list_dt):
+    list_day=list(map(lambda x: x.day, list_dt))
+    list_month=list(map(lambda x: x.month, list_dt))
+    list_year=list(map(lambda x: x.year, list_dt))
+    df = pd.DataFrame(list(zip(list_day, list_month, list_year)),
+               columns =['day', 'month', 'year'])
+    return(df)
+    
+# test
+example = [datetime.datetime.today() - datetime.timedelta(days=x) for x in range(5)]
+get_day_month_year(example)
+
 
 
 # 8) 
