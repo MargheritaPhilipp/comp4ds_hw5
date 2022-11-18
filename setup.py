@@ -26,8 +26,11 @@ setup(
     description='Setting up a python package',
     author='Daniela de los Santos & Margherita Phillipp',
     url='https://github.com/MargheritaPhilipp/comp4ds_hw5',
-    packages=find_packages(include=['pandas', 'numpy']),
+    packages=find_packages(where='src', exclude=['tests']),
+    package_dir={'': 'src'},
     install_requires=get_requirements(),
+    setup_requires=['pytest-runner', 'wheel'],
     package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv.csv']
                   }
 )
+
