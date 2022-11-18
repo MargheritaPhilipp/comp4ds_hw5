@@ -16,7 +16,7 @@ def get_requirements(requirements_path='requirements.txt'):
         return [x.strip() for x in fp.read().split('\n') if not x.startswith('#')]
 
 # for the version you can either put here a string with the version number
-
+__version__ = "0.1.0"
 # or you can create a variable called __version__ inside the __init__.py from
 # the src/your_library folder that has a string with the version as a string.
 
