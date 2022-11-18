@@ -26,7 +26,7 @@ setup(
     description='Setting up a python package',
     author='Daniela de los Santos & Margherita Phillipp',
     url='https://github.com/MargheritaPhilipp/comp4ds_hw5',
-    packages=find_packages(include=['exampleproject', 'exampleproject.*']),
+    packages=find_packages(include=['pandas', 'numpy']),
     install_requires=get_requirements(),
     package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv.csv']
                   }
