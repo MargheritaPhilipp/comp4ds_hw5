@@ -21,10 +21,10 @@ __version__ = "0.1.0"
 # the src/your_library folder that has a string with the version as a string.
 
 setup(
-    name='c4ds_hw5',
+    name='hw5_library',
     version='0.1.0',
     description='Setting up a python package',
-    author='Daniela de los Santos & Margherita Phillipp',
+    author='Daniela de los Santos & Margherita Philipp',
     url='https://github.com/MargheritaPhilipp/comp4ds_hw5',
     packages=find_packages(where='src', exclude=['tests']),
     package_dir={'': 'src'},
