@@ -201,11 +201,11 @@ for string in ['I', 'am', 'Groot']:
 # comments on b:
 strings
 #returns 'Groot_Groot'
-#presumably the desired output is "I_am_Groot"?
+#presumably the desired output is "I am Groot"?
 # correction:
 strings2 = ''
 for string in ['I', 'am', 'Groot']:
-    strings2 += string+"_"
+    strings2 += string+" "
 strings2
 
 
@@ -215,12 +215,18 @@ while j > 0:
    j += 1
 
 # comments on c: not tried to run, but this would keep running as j is always > 0
-# correction such that it stops:
+# correction such that it stops when adding 1:
 
 k=10
 while k < 20:
    k += 1        #equivalent:  k = k+1
 k
+
+# correction such that it stops when subtracting 1:
+l=10
+while l > 0:
+   l -= 1        #equivalent:  l = l-1
+l
 
 ### (d)
 productory = 0
