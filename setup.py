@@ -30,7 +30,7 @@ setup(
     package_dir={'': 'src'},
     install_requires=get_requirements(),
     setup_requires=['pytest-runner', 'wheel'],
-    package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv.csv']
+    package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv']
                   }
 )
 
