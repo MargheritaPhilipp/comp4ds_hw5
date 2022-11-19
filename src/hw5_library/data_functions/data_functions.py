@@ -9,14 +9,11 @@ import numpy as np
 
 #a. Load the data.
 
-def read_data(testf: str):
-    try:
-        df1 = pd.read_csv(testf)
-        return df1
-        print("Your file has been imported")
-        df1.head()
-    except FileNotFoundError: 
-        return "The file " +str(testf)+ " is not in the directory you have specified."
+def diabetes_data():
+    url="https://raw.githubusercontent.com/MargheritaPhilipp/comp4ds_hw5/main/Notebook/sample_diabetes_mellitus_data.csv"
+    df = pd.read_csv(url)
+    return df
+
 
 #b. Split the data between train and test. (you can use train_test_split from sklearn or any other
 #way)
