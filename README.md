@@ -1,1 +1,4 @@
-# comp4ds_hw5 Library
+# Assignment 5: Python libraries, FP and exceptions
+## Authors: Daniela de los Santos & Margheritta Phillipp
+
+
