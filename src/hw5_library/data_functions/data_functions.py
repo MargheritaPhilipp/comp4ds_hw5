@@ -10,7 +10,7 @@ import numpy as np
 #a. Load the data.
 
 def diabetes_data():
-    url="https://raw.githubusercontent.com/MargheritaPhilipp/comp4ds_hw5/main/Notebook/sample_diabetes_mellitus_data.csv"
+    url="https://raw.githubusercontent.com/MargheritaPhilipp/comp4ds_hw5/main/hw5_files/sample_diabetes_mellitus_data.csv"
     df = pd.read_csv(url)
     return df
 
