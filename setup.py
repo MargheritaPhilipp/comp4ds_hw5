@@ -1,25 +1,36 @@
-# Setup file
-
 from setuptools import setup, find_packages
+#######
+# Only needed if the version is imported from the library
+# import os
+# import sys
+
+# base_dir = os.path.dirname(__file__)
+# src_dir = os.path.join(base_dir, 'src')
+# sys.path.insert(0, src_dir)
+
+# import library_example
+#######
+
+def get_requirements(requirements_path='requirements.txt'):
+    with open(requirements_path) as fp:
+        return [x.strip() for x in fp.read().split('\n') if not x.startswith('#')]
+
+# for the version you can either put here a string with the version number
+__version__ = "0.1.0"
+# or you can create a variable called __version__ inside the __init__.py from
+# the src/your_library folder that has a string with the version as a string.
 
 setup(
-    name='c4ds_hw5',
+    name= 'hw5_library',
     version='0.1.0',
     description='Setting up a python package',
-    author='Daniela de los Santos & Margherita Phillipp',
+    author='Daniela de los Santos & Margherita Philipp',
     url='https://github.com/MargheritaPhilipp/comp4ds_hw5',
-    packages=find_packages(include=['exampleproject', 'exampleproject.*']),
-    install_requires=[
-        "joblib==1.2.0",
-        "numpy==1.23.4",
-        "pandas==1.5.1",
-        "python-dateutil==2.8.2", 
-        "pytz==2022.6",
-        "scikit-learn==1.1.3",
-        "scipy==1.9.3",
-        "six==1.16.0",
-        "threadpoolctl==3.1.0"
-    ],
-    package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv.csv']
+    packages=find_packages(where='src', exclude=['tests']),
+    package_dir={'': 'src'},
+    install_requires=get_requirements(),
+    setup_requires=['pytest-runner', 'wheel'],
+    package_data={'sample_diabetes_mellitus_data': ['sample_diabetes_mellitus_data.csv']
                   }
 )
+

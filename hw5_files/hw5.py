@@ -1,18 +1,7 @@
-# prep for question 6 on data analysis
-
 import os
-import pandas as pd
 
 #os.chdir('/Users/MargheritaP/Documents/GitHub/comp4ds_hw5')
 os.getcwd()
-
-df = pd.read_csv(os.path.realpath("sample_diabetes_mellitus_data.csv"))
-
-df.head()
-
-
-# prep for library creation
-
 
 
 # 1)
@@ -39,7 +28,11 @@ def car_at_light(light:str) -> str:
     else :
         print("Undefined instruction for color: " + str(light))
 
+#could use return instead of print
 #test function:
+car_at_light("red")
+car_at_light("yellow")
+car_at_light("green")
 car_at_light("silver")
 
 # 2)
@@ -52,14 +45,14 @@ car_at_light("silver")
 # 
 
 # with Easier to Ask for Forgiveness than Permission (EAFP) 
-   
 def safe_subtract(n1, n2):
     try:
         return n1-n2
     except TypeError: 
+        print("TypeError occured -  function will return None")
         return None
     except Exception as error:
-        print(str(error))
+        print(error)
 
 #test function
 print(safe_subtract(-9.44,5))
@@ -88,30 +81,13 @@ safe_subtract_old(8,complex(7))
 # Name the first function "retrieve_age_eafp" and follow EAFP
 # Name the second function "retrieve_age_lbyl" and follow lbyl
 
-
-## EAFP
-
+#for tests:
 dic1= {'name': 'John', 'last_name': 'Doe', 'birth': 1987}
 dic2= {'name': 'Janet', 'last_name': 'Bird', 'gender': 'female'}
 dic3= {'name': 'Janet', 'last_name': 'Bird', 'birth': '1984'}
 
 
-def retrieve_age_eafp1(dictionary: dict):
-    try:
-        return(2022 - dictionary.get('birth'))
-    except:
-        print("This dictionary does not have a birth date to retrieve age from") # Might this be what the question is asking for??
-
-retrieve_age_eafp1(dic2)
-
-#check out different errors:
-dic1.get('birth')
-dic1['birth']
-dic2.get('birth')
-dic2['birth']
-
-
-# possibly better as the calling with square brackets results in key error
+# EAPF2: possibly better as the calling with square brackets results in key error
 def retrieve_age_eafp2(dictionary: dict):
     try:
         return print(2022 - dictionary['birth'])
@@ -124,9 +100,24 @@ retrieve_age_eafp2(dic1)
 retrieve_age_eafp2(dic2)
 retrieve_age_eafp2(dic3)
 
+
+## EAFP1
+def retrieve_age_eafp1(dictionary: dict):
+    try:
+        return(2022 - dictionary.get('birth'))
+    except:
+        print("This dictionary does not have a birth date to retrieve age from") # Might this be what the question is asking for??
+
+retrieve_age_eafp1(dic2)
+
+#check out different errors:
+#dic1['birth']
+#dic2.get('birth')
+#dic2['birth']
+#dic1.keys()
+
 ## LBYL
 
-dic1.keys()
 
 def retrieve_age_lbyl(dictionary: dict):
     if 'birth' in dictionary.keys():
@@ -149,19 +140,24 @@ retrieve_age_lbyl(dic3)
 # that it might not exist. 
 #
 
+import pandas as pd
+
 def read_data(testf: str):
     try:
-        df1 = pd.read_csv(testf)
-        print("your file has been imported as df1")
-        df1.head()
+        read_data.df = pd.read_csv(testf)
+        print("Your file can now be called as read_data.df here are the headings:")
+        print( read_data.df.head())
     except FileNotFoundError: 
         return "The file " +str(testf)+ " is not in the directory you have specified."
 
-#check 
-test1 = "sample_diabetes_mellitus_data.csv"
+#check
+test1 = "hw5_files/sample_diabetes_mellitus_data.csv"
 test2 = "data.csv"
 
 read_data(test1)
+
+read_data.df.head()
+
 read_data(test2)
 
 # remnants of old attempts
@@ -201,11 +197,11 @@ for string in ['I', 'am', 'Groot']:
 # comments on b:
 strings
 #returns 'Groot_Groot'
-#presumably the desired output is "I_am_Groot"?
+#presumably the desired output is "I am Groot"?
 # correction:
 strings2 = ''
 for string in ['I', 'am', 'Groot']:
-    strings2 += string+"_"
+    strings2 += string+" "
 strings2
 
 
@@ -215,12 +211,18 @@ while j > 0:
    j += 1
 
 # comments on c: not tried to run, but this would keep running as j is always > 0
-# correction such that it stops:
+# correction such that it stops when adding 1:
 
 k=10
 while k < 20:
    k += 1        #equivalent:  k = k+1
 k
+
+# correction such that it stops when subtracting 1:
+l=10
+while l > 0:
+   l -= 1        #equivalent:  l = l-1
+l
 
 ### (d)
 productory = 0
@@ -250,7 +252,6 @@ productory2
 
 from functools import reduce 
 
-
 def simba_count(lst):
     result= map(lambda x: x.count("Simba") , lst)
     n_simba = list(result)
@@ -271,12 +272,27 @@ simba_count(list_strings)
 # is an element of the input list and has as value its 
 # day, month, and year.
 # 
-
-# Without map or reduce:
-
+    
+# With map or reduce
 import pandas as pd
 import datetime
 
+def get_day_month_year(list_dt):
+    list_day=list(map(lambda x: x.day, list_dt))
+    list_month=list(map(lambda x: x.month, list_dt))
+    list_year=list(map(lambda x: x.year, list_dt))
+    df = pd.DataFrame(list(zip(list_day, list_month, list_year)),
+               columns =['day', 'month', 'year'])
+    return(df)
+    
+# test
+example = [datetime.datetime.today() - datetime.timedelta(days=x) for x in range(5)]
+get_day_month_year(example)
+
+
+# Without map or reduce:
+import pandas as pd
+import datetime
 
 def get_day_month_year_simple(list_dt):
     df = pd.DataFrame(example, columns = ['date_full'])
@@ -293,27 +309,7 @@ def get_day_month_year_simple(list_dt):
 
 # test
 example = [datetime.datetime.today() - datetime.timedelta(days=x) for x in range(5)]
-
 get_day_month_year_simple(example)    
-    
-# Testing map or reduce
-
-import pandas as pd
-import datetime
-
-
-def get_day_month_year(list_dt):
-    list_day=list(map(lambda x: x.day, list_dt))
-    list_month=list(map(lambda x: x.month, list_dt))
-    list_year=list(map(lambda x: x.year, list_dt))
-    df = pd.DataFrame(list(zip(list_day, list_month, list_year)),
-               columns =['day', 'month', 'year'])
-    return(df)
-    
-# test
-example = [datetime.datetime.today() - datetime.timedelta(days=x) for x in range(5)]
-get_day_month_year(example)
-
 
 
 # 8) 
@@ -352,7 +348,6 @@ compute_distance(input_example)
 # for instance for list_1=[[2], 3, [[1,2],5]] 
 # the result should be 13
 #
-
 
 def sum_general_int_list(l):
     total=0
