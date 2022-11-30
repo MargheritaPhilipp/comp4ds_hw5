@@ -44,6 +44,26 @@ class TestSafe_subtract(unittest.TestCase):
         self.assertTrue(Exception in context.exception)
         # This isn't working
 
+class TestRead_Data(unittest.TestCase):)
+
+    def test_read_data_1(self):
+        
     
+    def test_read_data_2(self):
+        with self.assertRaises(FileNotFoundError) as context:
+            simplefuns.safe_subtract(5, a)
+        self.assertTrue(FileNotFoundError in context.exception) #should replace exception with filenotfound?
+        
+### remove at the end            
+def read_data(testf: str):
+    try:
+        df1 = pd.read_csv(testf)
+        print("your file has been imported as df1")
+        df1.head()
+        read_data.df = pd.read_csv(testf)
+        print("Your file can now be called as read_data.df here are the headings:")
+        print( read_data.df.head())
+    except FileNotFoundError: 
+        return "The file " +str(testf)+ " is not in the directory you have specified." 
         
   
