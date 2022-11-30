@@ -40,7 +40,7 @@ class TestGet_Day_Month_Year(unittest.TestCase):
     def test_get_day_month_year_1(self):
         date_input = [datetime.datetime(2009, 1, 14, 19, 12, 21), datetime.datetime(2, 6, 30, 1, 32, 37, 286836)]
         output_data = {'day': [14,30], 'month': [1,6], 'year': [2009,2]}
-        expected_output =  pd.DataFrame(data_output)
+        expected_output =  pd.DataFrame(output_data)
         output = lists.get_day_month_year(date_input)
         assert_frame_equal(expected_output, output, check_dtype=False) #should be more suitable than self.assertEqual
 
@@ -52,10 +52,11 @@ class TestGet_Day_Month_Year(unittest.TestCase):
 class TestCompute_Distance(unittest.TestCase):
     
     def test_compute_distance_1(self):
-        coord_input = [((-5,1), (-5, 1)), ((52.38, 20.1),(52.3, 17.8))]
-        expected_output= [0.0, 157.00582786889402]                      
+        coord_input=[((41.23,23.5), (41.5, 23.4)), ((52.38, 20.1),(52.3, 17.8))]
+        expected_output= [31.13186522205169, 157.005827868894]                     
         output = lists.compute_distance(coord_input)
         self.assertEqual(expected_output, output)
+        
 
 ## note to maybe edit original function:
         # induce ValueError: Latitude (first value) must be in the [-90; 90] range.
@@ -74,13 +75,13 @@ class TestSum_General_Int_List(unittest.TestCase):
     def test_sum_general_int_list_1(self):
         list_input = [[2], 3, [[1,2],5]]
         expected_output= 13                      
-        output = lists.sum_general_int(list_input)
+        output = lists.sum_general_int_list(list_input)
         self.assertEqual(expected_output, output)
 
     def test_sum_general_int_list_2(self):
         list_input = [[-1, [[-1, -1]],[[-1,-1],[-1,-1]]]]  
         expected_output= -7                  
-        output = lists.sum_general_int(list_input)
+        output = lists.sum_general_int_list(list_input)
         self.assertEqual(expected_output, output)
 
 
