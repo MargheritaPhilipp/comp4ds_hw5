@@ -38,11 +38,9 @@ class TestSafe_subtract(unittest.TestCase):
         output=simplefuns.safe_subtract(5, "2")
         self.assertIsNone(output)
         
-    def test_safe_subtract_3(self):
-        with self.assertRaises(Exception) as context:
-            simplefuns.safe_subtract(5, a)
-        self.assertTrue(Exception in context.exception)
-        # This isn't working
+        def test_safe_subtract_3(self):
+            with self.assertRaises(NameError):
+                output=simplefuns.safe_subtract(5, a)
 
 class TestRead_Data(unittest.TestCase):)
 
