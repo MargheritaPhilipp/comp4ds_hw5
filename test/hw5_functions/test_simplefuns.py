@@ -1,6 +1,7 @@
 import unittest
 import pandas as pd
 from hw5_library.hw5_functions import simplefuns
+from pandas.testing import assert_frame_equal
 
 
 
@@ -42,26 +43,20 @@ class TestSafe_subtract(unittest.TestCase):
             with self.assertRaises(NameError):
                 output=simplefuns.safe_subtract(5, a)
 
-class TestRead_Data(unittest.TestCase):)
+class TestRead_Data(unittest.TestCase):
 
     def test_read_data_1(self):
+        url="https://raw.githubusercontent.com/MargheritaPhilipp/comp4ds_hw5/main/hw5_files/sample_diabetes_mellitus_data.csv"
+        data= pd.read_csv(url)
+        expected_output_1="Your file can now be called as read_data.df here are the headings:"
+        expected_output_2=data.head()
+        output1, output2=simplefuns.read_data(url)
+        assert_frame_equal(expected_output_2, output2, check_dtype=False)
+        self.assertEqual(expected_output_1, output1)
         
     
     def test_read_data_2(self):
-        with self.assertRaises(FileNotFoundError) as context:
-            simplefuns.safe_subtract(5, a)
-        self.assertTrue(FileNotFoundError in context.exception) #should replace exception with filenotfound?
-        
-### remove at the end            
-def read_data(testf: str):
-    try:
-        df1 = pd.read_csv(testf)
-        print("your file has been imported as df1")
-        df1.head()
-        read_data.df = pd.read_csv(testf)
-        print("Your file can now be called as read_data.df here are the headings:")
-        print( read_data.df.head())
-    except FileNotFoundError: 
-        return "The file " +str(testf)+ " is not in the directory you have specified." 
-        
+        expected_output="The file is not in the directory you have specified."
+        output=simplefuns.read_data("random_data")
+        self.assertEqual(expected_output, output)        
   

@@ -56,19 +56,10 @@ def safe_subtract(n1, n2):
 
 def read_data(testf: str):
     try:
-        df1 = pd.read_csv(testf)
-        print("your file has been imported as df1")
-        df1.head()
         read_data.df = pd.read_csv(testf)
-        print("Your file can now be called as read_data.df here are the headings:")
-        print( read_data.df.head())
+        t = "Your file can now be called as read_data.df here are the headings:"
+        return t, read_data.df.head()
+       #print( read_data.df.head())
     except FileNotFoundError: 
-        return "The file " +str(testf)+ " is not in the directory you have specified."
-
-def read_data_old(testf: str):
-    try:
-        df1 = pd.read_csv(testf)
-        print("your file has been imported as df1")
-        df1.head()
-    except FileNotFoundError: 
-        return "The file " +str(testf)+ " is not in the directory you have specified."
+        return "The file is not in the directory you have specified."
+    
